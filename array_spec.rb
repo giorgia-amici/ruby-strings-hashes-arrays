@@ -4,15 +4,17 @@ describe Array do
 
 
 #[:inspect, :to_s, :to_a, :to_ary, :frozen?, :==, :eql?, 
-#:hash, :[], :[]=, :at, :fetch, :first, :last, :concat, :<<, :push, :pop, :shift, :unshift, :insert, :each, :each_index, :reverse_each, :length, :size, :empty?, :find_index, :index, :rindex, :join, :reverse, :reverse!, :rotate, :rotate!, :sort, :sort!, :sort_by!, :collect, :collect!, :map, :map!, :select, :select!, :keep_if, :values_at, :delete, :delete_at, :delete_if, :reject, :reject!, :zip, :transpose, :replace, :clear, :fill, :include?, :<=>, :slice, :slice!, :assoc, :rassoc, :+, :*, :-, :&, :|, :uniq, :uniq!, :compact, :compact!, :flatten, :flatten!, :count, :shuffle!, :shuffle, :sample, :cycle, :permutation, :combination, :repeated_permutation, :repeated_combination, :product, :take, :take_while, :drop, :drop_while, :bsearch, :pack, :entries, :sort_by, :grep, :find, :detect, :find_all, :flat_map, :collect_concat, :inject, :reduce, :partition, :group_by, :all?, :any?, :one?, :none?, :min, :max, :minmax, :min_by, :max_by, :minmax_by, :member?, :each_with_index, :each_entry, :each_slice, :each_cons, :each_with_object, :chunk, :slice_before, :lazy, :nil?, :===, :=~, :!~, :class, :singleton_class, :clone, :dup, :taint, :tainted?, :untaint, :untrust, :untrusted?, :trust, :freeze, :methods, :singleton_methods, :protected_methods, :private_methods, :public_methods, :instance_variables, :instance_variable_get, :instance_variable_set, :instance_variable_defined?, :remove_instance_variable, :instance_of?, :kind_of?, :is_a?, :tap, :send, :public_send, :respond_to?, :extend, :display, :method, :public_method, :define_singleton_method, :object_id, :to_enum, :enum_for, :equal?, :!, :!=, :instance_eval, :instance_exec, :__send__, :__id__]
+#:hash, :[], :[]=, :at, :fetch, :first, :last, :concat,
+# :<<, :push, :pop, :shift, :unshift, :insert, :each, :each_index, :reverse_each, :length, :size, :empty?, :find_index, :index, :rindex, :join, :reverse, :reverse!, :rotate, :rotate!, :sort, :sort!, :sort_by!, :collect, :collect!, :map, :map!, :select, :select!, :keep_if, :values_at, :delete, :delete_at, :delete_if, :reject, :reject!, :zip, :transpose, :replace, :clear, :fill, :include?, :<=>, :slice, :slice!, :assoc, :rassoc, :+, :*, :-, :&, :|, :uniq, :uniq!, :compact, :compact!, :flatten, :flatten!, :count, :shuffle!, :shuffle, :sample, :cycle, :permutation, :combination, :repeated_permutation, :repeated_combination, :product, :take, :take_while, :drop, :drop_while, :bsearch, :pack, :entries, :sort_by, :grep, :find, :detect, :find_all, :flat_map, :collect_concat, :inject, :reduce, :partition, :group_by, :all?, :any?, :one?, :none?, :min, :max, :minmax, :min_by, :max_by, :minmax_by, :member?, :each_with_index, :each_entry, :each_slice, :each_cons, :each_with_object, :chunk, :slice_before, :lazy, :nil?, :===, :=~, :!~, :class, :singleton_class, :clone, :dup, :taint, :tainted?, :untaint, :untrust, :untrusted?, :trust, :freeze, :methods, :singleton_methods, :protected_methods, :private_methods, :public_methods, :instance_variables, :instance_variable_get, :instance_variable_set, :instance_variable_defined?, :remove_instance_variable, :instance_of?, :kind_of?, :is_a?, :tap, :send, :public_send, :respond_to?, :extend, :display, :method, :public_method, :define_singleton_method, :object_id, :to_enum, :enum_for, :equal?, :!, :!=, :instance_eval, :instance_exec, :__send__, :__id__]
 
 
 
 array = [1, 2, 3, 4, 5, 6]
-array2 = [1, 2, 3, 4, 5, 6]
+array2 = [4, 5, 6]
 hash = {:key => 1, :key2 => 2}
 hash2 = {"giorgia" => "1", "pablo" => "cacca"}
 x = 1
+ele = 4
 
 
 
@@ -41,7 +43,7 @@ end
 
 #==
 it "return true if the content is the same" do
-	expect(Array.have_the_same_content(array,array2)).to eq(array == array2)
+	expect(Array.have_the_same_content(array,array2)).to be false
 
 end
 
@@ -53,12 +55,49 @@ end
 
 #at
 it "returns the value AT the index" do
-	expect(Array.give_me_the_value_at_this_index(array, x)).to eq(array[x])
+	expect(Array.give_me_the_value_at_this_index(array, x)).to eq(2)
 end
 
 #fetch
 it "get the value of index but if out of range throws an error" do
 	expect(Array.give_me_the_value_of_index(array, x)).to eq(array[x])
 end
-	
+
+
+#first
+it "gives you back array[0]" do
+	expect(Array.give_me_the_first_element(array)).to eq(array[0])
+end
+
+#last
+it "gives you the last element of the array" do
+	expect(Array.give_me_the_last_element(array)).to eq(array[-1])
+	end
+
+#concat
+it "concatenates b to a" do
+	expect(Array.concat_b_to_a(array, array2)).to eq(array + array2)
+end
+
+
+#<<
+it "adds the element to the array in last position" do
+	expect(Array.add_ele(array, ele)).to eq(array << ele)
+end
+
+#push
+it "push element into an array" do
+	expect(Array.push_ele(array, ele)).to eq(array << ele)
+	end
+
+#pop
+it "it removes the last n elements from an array and changes the lenght of original array" do
+	yoyo = [1,2,3,4,5,6]
+	expect(Array.pop_element(yoyo)).to eq(yoyo)
+	# expect(yoyo.size).to eq(yoyo.size - x)
+end
+
+
+
+
 end
