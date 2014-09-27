@@ -37,9 +37,9 @@ it "gives you back an array" do
 end
 
 #to_frozen?
-# it "returns true if the array is frozen" do
-# 	expect(Array.query_if_array_is_frozen(array)).to eq(true)
-# end
+it "returns true if the array is frozen" do
+	expect(Array.query_if_array_is_frozen(array)).to be (true)
+end
 
 #==
 it "return true if the content is the same" do
@@ -92,11 +92,27 @@ it "push element into an array" do
 
 #pop
 it "it removes the last n elements from an array and changes the lenght of original array" do
-	yoyo = [1,2,3,4,5,6]
-	expect(Array.pop_element(yoyo)).to eq(yoyo)
-	# expect(yoyo.size).to eq(yoyo.size - x)
+	expect(Array.pop_element(array)).to eq(array)
 end
 
+#shift
+it "removes the first element of the array & returns it. If the array is empty returns null" do
+	testina = [22,23,24,25]
+	expect(Array.shift_ele(testina)).to eq(22)
+	end
+
+#unshift
+it "propends element at the beginning of the array" do
+	gio_test = [20, 30, 40]
+	expect(Array.unshift_ele(gio_test, ele)).to eq([4, 20, 30, 40])
+end
+
+#insert
+it "insert the value before the element with the given index" do
+	gio_test_i = %w{yoyo es un gordo}
+	i = 3
+	expect(Array.insert_me_before_index(gio_test_i, i, ele)).to eq(gio_test_i.insert(i, ele))
+	end
 
 
 
